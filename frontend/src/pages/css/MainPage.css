@@ -1,0 +1,83 @@
+
+
+.heading {
+    margin-left: 8rem; /* equivalent to lg:mx-32 */
+    margin-right: 8rem;
+    font-size: 1.875rem; /* equivalent to text-3xl */
+    font-weight: bold;
+    color: #16a34a; /* equivalent to text-green-600 */
+}
+
+.subheading {
+    margin-left: 8rem; /* equivalent to lg:mx-32 */
+    margin-right: 8rem;
+    opacity: 0.4;
+    padding-top: 1.5rem; /* equivalent to py-6 */
+    padding-bottom: 1.5rem;
+}
+
+.register {
+    display: flex;
+    padding: 20px;
+    width: 90%;
+    height: auto;
+    border-radius: 10px;
+    margin-left: 7%;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.inputField {
+    padding: 6px;
+    margin-bottom: 10%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    color: black;
+    
+}
+
+.imgClrelative {
+    width: 80%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.image_home {
+    padding-left: 5%;
+    width: 100%;
+    height: auto;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 2px;
+}
+.login{
+    padding: 30px;
+}
+.label{
+    text-align: justify;
+}
+.btn{
+    padding: 7px;
+    background-color: #0d933e;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.registerLink{
+    text-align: center;
+    padding: 10px;
+    color: #0d933e;
+}
