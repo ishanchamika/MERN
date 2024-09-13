@@ -9,22 +9,24 @@ const router = require('./router');
 app.use(cors());
 app.use(express.json());
 
-const uri = 'mongodb+srv://ishanchamika:1001@cluster5.4r8irpb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster5';
+const uri = 'mongodb+srv://project_tea:1001@cluster2024.nkb8m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster2024';
 
-const connect = async () =>
-{
-    try{
-        console.log('Connected to the Mngo');
+const connect = async () => {
+    try 
+    {
+      await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+      console.log('Connected to MongoDB');
+    } 
+    catch (err) 
+    {
+      console.error('Failed to connect to MongoDB:', err);
     }
-    catch(err){
-        console.log(err);
-    }
-};
-connect();
+  };
+  connect();
+  
+app.use('/api', router);
 
-const server = app.listen(3001, 'localhost' , () => 
+const server = app.listen(port, 'localhost' , () => 
 { 
     console.log(`Express is running on port ${server.address().port}`);
 });
-
-app.use('/api', router);

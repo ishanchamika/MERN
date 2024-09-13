@@ -16,9 +16,11 @@ const getUsers = (req, res, next) =>
 // add USer____________________________________
 const addUser = (req, res, next) => 
 {
+
         const user = new User({
-            id: req.body.id,
-            name: req.body.name
+            email: req.body.email,
+            name: req.body.name,
+            password: req.body.password
         });
         user.save()
             .then(response => {
