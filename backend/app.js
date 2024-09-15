@@ -56,4 +56,13 @@ app.delete('/deleteuser', (req, res) =>
 })
 //__________________________________________________
 
+//____________________Find user_____________________
+app.post('/finduser', (req, res) =>
+{
+    controller.finduser(req.body, (callback) =>
+    {
+        res.send();
+    })
+})
+//__________________________________________________
 module.exports = app;

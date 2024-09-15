@@ -1,8 +1,9 @@
-import React ,{useEffect, useState} from 'react'
+import React ,{useState} from 'react'
 import './css/MainPage.css'
 import teaFactoryImage from './tea3.webp'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function Register() 
 {
@@ -11,13 +12,16 @@ export default function Register()
   const [name , setName] = useState("");
   const [password , setPassword] = useState("");
   const [email , setEmail] = useState("");
+  const Navigate = useNavigate();
 
   //handle the form submission
   const handleSubmit = (e) => 
     {
       e.preventDefault();
       axios.post('http://localhost:3001/api/user', {name, email, password})
-      .then(result => console.log(result))
+      .then(result =>{ console.log(result)
+        Navigate('/login')
+      })
       .catch(err => console.log(err))
     }
 

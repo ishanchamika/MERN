@@ -1,8 +1,9 @@
-import React ,{useEffect, useState} from 'react'
+import React ,{useState} from 'react'
 import './css/MainPage.css'
 import teaFactoryImage from './tea3.webp'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function MainPage() 
 {
@@ -10,12 +11,21 @@ export default function MainPage()
   //state to store the user input
   const [username , setUsername] = useState("");
   const [password , setPassword] = useState("");
+  const Navigate = useNavigate();
 
   //handle the form submission
   const handleSubmit = (e) => 
     {
       e.preventDefault();
-      axios.post('http://localhost:3001/api/user', {username, password})
+      axios.post('http://localhost:3001/api/finduser', {username, password})
+      .then(result =>{ 
+        console.log(result.data)
+        if(result.data.message === 'success')
+        {
+          Navigate('/dashboard')
+        }
+      })
+      .catch(err => console.log(err))
     };
 
 

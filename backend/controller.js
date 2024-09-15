@@ -59,10 +59,37 @@ const deleteUser = (req, res, next) =>
         });
 }
 
+// find a user__________________________________
+const finduser = (req, res, next) =>
+    {
+        const email =  req.body.username;
+        const password = req.body.password;
+        User.findOne({email:email})
+            .then(response => {
+                if(response)
+                {
+                    if(response.password == password)
+                    {
+                        res.json({message: 'success'});
+                    }
+                    else
+                    {
+                        res.json({message: 'password does not match'});
+                    }
+                }
+                else
+                {
+                    res.json({message: 'User not found'});
+                }
+            })
+            .catch(error => {
+                res.json({error});
+            });
+    }
 
 
 exports.getUsers = getUsers;
 exports.addUser = addUser;
 exports.updateUser = updateUser;
 exports.deleteUser = deleteUser;
-// exports.getUserById = getUserById; 
+exports.finduser = finduser;

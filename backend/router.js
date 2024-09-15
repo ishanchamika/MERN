@@ -7,5 +7,6 @@ router.get('/users',controller.getUsers);
 router.post('/user',controller.addUser);
 router.put('/Updateuser',controller.updateUser);
 router.delete('/deleteuser',controller.deleteUser);
+router.post('/finduser',controller.finduser);
 
 module.exports = router;
