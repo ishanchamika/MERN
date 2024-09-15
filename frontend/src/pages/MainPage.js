@@ -4,6 +4,9 @@ import teaFactoryImage from './tea3.webp'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { handleErr } from './Toastify'
+import { ToastContainer } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function MainPage() 
 {
@@ -13,24 +16,51 @@ export default function MainPage()
   const [password , setPassword] = useState("");
   const Navigate = useNavigate();
 
-  //handle the form submission
-  const handleSubmit = (e) => 
+    //handle the form submission
+    const handleSubmit = async (e) => 
     {
       e.preventDefault();
-      axios.post('http://localhost:3001/api/finduser', {username, password})
-      .then(result =>{ 
-        console.log(result.data)
-        if(result.data.message === 'success')
+      try
+      {
+        if(!password && !username)
         {
-          Navigate('/dashboard')
+          handleErr('Username and password are required');
+          return;
         }
-      })
-      .catch(err => console.log(err))
+        if(!username)
+        {
+          handleErr('Username is required');
+          return;
+        }
+        if(!password)
+        {
+          handleErr('Password is required');
+          return;
+        }
+        
+    
+        const response = await axios.post('http://localhost:3001/api/finduser', {username, password});
+        if(response.data.token)
+        {
+          localStorage.setItem('token', response.data.token);
+          Navigate('/dashboard');
+        }
+        else
+        {
+          handleErr('Invalid username or password');
+        }
+      }
+      catch(err)
+      {
+        console.log('Login error', err);
+        handleErr('Login failed. Please try again later.');
+      }
     };
 
 
   return (
     <>
+    <ToastContainer />
     <div className='head'>
         <h3 className='lg:mx-32 text-3xl font-bold text-green-600'>TEA FACTORY</h3>
         <p className='lg:mx-32 opacity-40 py-6'>Fifty years of trust....</p>

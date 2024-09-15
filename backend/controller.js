@@ -1,5 +1,7 @@
 const { response } = require('./app');
 const User = require('./model');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 // get All Users______________________________
 const getUsers = (req, res, next) => 
@@ -14,13 +16,14 @@ const getUsers = (req, res, next) =>
 }
 
 // add USer____________________________________
-const addUser = (req, res, next) => 
+const addUser =async (req, res, next) => 
 {
-
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
         const user = new User({
             email: req.body.email,
             name: req.body.name,
-            password: req.body.password
+            password: hashedPassword
         });
         user.save()
             .then(response => {
@@ -60,32 +63,38 @@ const deleteUser = (req, res, next) =>
 }
 
 // find a user__________________________________
-const finduser = (req, res, next) =>
-    {
-        const email =  req.body.username;
-        const password = req.body.password;
-        User.findOne({email:email})
-            .then(response => {
-                if(response)
-                {
-                    if(response.password == password)
-                    {
-                        res.json({message: 'success'});
-                    }
-                    else
-                    {
-                        res.json({message: 'password does not match'});
-                    }
-                }
-                else
-                {
-                    res.json({message: 'User not found'});
-                }
-            })
-            .catch(error => {
-                res.json({error});
-            });
+const finduser = async (req, res, next) =>
+{
+    const email =  req.body.username;
+    const password = req.body.password;
+    try {
+        const userdata = await User.findOne({email:email});
+        if(!userdata)
+        {
+            res.json({message: "user not found"});
+        }
+        else
+        {
+            const hash_pwd = userdata.password;
+            const isMatch = await bcrypt.compare(password, hash_pwd);
+            if(isMatch)
+            {
+                // res.json({message: "success"});
+                const token = jwt.sign({userId: userdata._id}, 'ishan789', {expiresIn: '1m'});
+                res.json({token: token});
+            }
+            else
+            {
+                res.json({message: "invalid password"});
+            }
+        }
+
     }
+    catch(err)
+    {
+        res.json({message: "network error"});
+    }
+}
 
 
 exports.getUsers = getUsers;
