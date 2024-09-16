@@ -1,8 +1,10 @@
 const { response } = require('./app');
-const User = require('./model');
-const Employee = require('./model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+
+// const User = require('./model');
+// const Employee = require('./model');
+const { User, Employee } = require('./model');
 
 // get All Users______________________________
 const getUsers = (req, res, next) => 
@@ -99,6 +101,8 @@ const finduser = async (req, res, next) =>
 
 
 // ===============================================================Employee=============================================================
+
+
 // add Employee_____________________________________________________
 const addEmployee = async (req, res) => 
 {
@@ -119,6 +123,26 @@ const addEmployee = async (req, res) =>
         res.json({success: false});
     }
 }
+
+// get all Employees________________________________________________
+const getEmployees = async (req, res) =>
+{
+    try{
+        const data =await Employee.find();
+        if(data.length > 0)
+        {
+            res.json({data});
+        }
+        else
+        {
+            res.json({message: "no data found"});
+        } 
+    }
+    catch(err)
+    {
+        res.json({message: "network error"});
+    }
+}
 // ====================================================================================================================================
 exports.getUsers = getUsers;
 exports.addUser = addUser;
@@ -126,3 +150,4 @@ exports.updateUser = updateUser;
 exports.deleteUser = deleteUser;
 exports.finduser = finduser;
 exports.addEmployee = addEmployee;
+exports.getEmployees = getEmployees;

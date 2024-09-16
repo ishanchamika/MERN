@@ -45,3 +45,61 @@
     background-color: #45a049;
   }
   
+  /* Table _________________________________________________________ */
+  .pickers {
+    margin: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: black;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  thead {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: black;
+  }
+  
+  th {
+    font-weight: bold;
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .sub_btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sub_btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .sub_btn.delete {
+    background-color: #dc3545;
+  }
+  
+  .sub_btn.delete:hover {
+    background-color: #c82333;
+  }
+  

@@ -66,6 +66,8 @@ app.post('/finduser', (req, res) =>
 })
 //__________________________________________________
 
+
+// ===================Employee=======================
 //__________________Add employee____________________
 app.post('/addemployee', (req, res) =>
 {
@@ -74,4 +76,14 @@ app.post('/addemployee', (req, res) =>
         res.send();
     })
 })
+// __________________________________________________
+
+//__________________Get all employees____________________
+app.get('/getemployees', (req, res) => 
+{
+    controller.getEmployees( (req, res, next) => 
+    {
+        res.send();
+    });
+});
 module.exports = app;

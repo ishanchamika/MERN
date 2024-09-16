@@ -40,10 +40,21 @@ function Adddetails()
         handleErr('Weight is required');
         return;
       }
+      if (isNaN(emp_weight) || emp_weight <= 0) {
+        handleErr('Weight must be a valid number greater than 0');
+        return;
+      }
 
       const response = await axios.post('http://localhost:3001/api/addemployee', {emp_id, emp_name, emp_date, emp_weight});
       if(response.data)
       {
+        set_emp_id('');
+        set_emp_name('');
+        set_emp_date('');
+        set_emp_weight('');
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
         handleSuccess('Employee added successfully');
       }
       else
@@ -53,7 +64,7 @@ function Adddetails()
     }
     catch(err)
     {
-      console.log('Error', err);
+      console.log(err);
     }
   }
 

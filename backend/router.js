@@ -10,5 +10,6 @@ router.delete('/deleteuser',controller.deleteUser);
 router.post('/finduser',controller.finduser);
 
 router.post('/addemployee',controller.addEmployee);
+router.get('/getemployees',controller.getEmployees);
 
 module.exports = router;

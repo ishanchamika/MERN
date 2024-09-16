@@ -43,7 +43,7 @@ export default function MainPage()
         if(response.data.token)
         {
           localStorage.setItem('token', response.data.token);
-          Navigate('/dashboard');
+          Navigate('/supervisor');
         }
         else
         {

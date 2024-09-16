@@ -17,7 +17,7 @@ function App()
         <Route path='/register' element = {<Register/>}></Route>
         <Route path='/dashboard' element = {<Dashboard/>}></Route>
         <Route path='/supervisor' element = {<Supervisor/>}></Route>
-        <Route path='Add_details' element = {<Adddetails/>}></Route>
+        <Route path='/Add_details' element = {<Adddetails/>}></Route>
       </Routes>
     </BrowserRouter>
     </div>

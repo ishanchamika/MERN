@@ -7,23 +7,20 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Register() 
 {
-
-  //state to store the user input
   const [name , setName] = useState("");
   const [password , setPassword] = useState("");
   const [email , setEmail] = useState("");
   const Navigate = useNavigate();
 
-  //handle the form submission
   const handleSubmit = (e) => 
-    {
-      e.preventDefault();
-      axios.post('http://localhost:3001/api/user', {name, email, password})
-      .then(result =>{ console.log(result)
-        Navigate('/login')
-      })
-      .catch(err => console.log(err))
-    }
+  {
+    e.preventDefault();
+    axios.post('http://localhost:3001/api/user', {name, email, password})
+    .then(result =>{ console.log(result)
+      Navigate('/login')
+    })
+    .catch(err => console.log(err))
+  }
 
   return (
     <>
