@@ -17,3 +17,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* *,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0; 
+}
+
+.container {
+  background-color: rgb(255, 255, 255);
+  padding: 32px 48px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 8px 8px 24px 0px rgb(66, 68, 90, 1);
+}  */
