@@ -9,4 +9,6 @@ router.put('/Updateuser',controller.updateUser);
 router.delete('/deleteuser',controller.deleteUser);
 router.post('/finduser',controller.finduser);
 
+router.post('/addemployee',controller.addEmployee);
+
 module.exports = router;

@@ -8,5 +8,15 @@ const userSchema = new Schema({
     password: String
 });
 
+const  employeeSchema = new Schema({
+    empId: String,
+    empDate: String,
+    empName: String,
+    empWeight: Number,
+});
+
 const User = mongoose.model('User', userSchema);
+const Employee = mongoose.model('Employee', employeeSchema);
+
 module.exports = User;
+module.exports = Employee;

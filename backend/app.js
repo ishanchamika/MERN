@@ -65,4 +65,13 @@ app.post('/finduser', (req, res) =>
     })
 })
 //__________________________________________________
+
+//__________________Add employee____________________
+app.post('/addemployee', (req, res) =>
+{
+    controller.addEmployee(req.body, (callback) =>
+    {
+        res.send();
+    })
+})
 module.exports = app;

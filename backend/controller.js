@@ -1,5 +1,6 @@
 const { response } = require('./app');
 const User = require('./model');
+const Employee = require('./model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -97,8 +98,31 @@ const finduser = async (req, res, next) =>
 }
 
 
+// ===============================================================Employee=============================================================
+// add Employee_____________________________________________________
+const addEmployee = async (req, res) => 
+{
+    try
+    {
+        const employee = new Employee({
+            empId: req.body.emp_id,
+            empName: req.body.emp_name,
+            empDate: req.body.emp_date,
+            empWeight: req.body.emp_weight
+        }); 
+    
+        employee.save();
+        res.json({success: true});
+    }
+    catch(err)
+    {
+        res.json({success: false});
+    }
+}
+// ====================================================================================================================================
 exports.getUsers = getUsers;
 exports.addUser = addUser;
 exports.updateUser = updateUser;
 exports.deleteUser = deleteUser;
 exports.finduser = finduser;
+exports.addEmployee = addEmployee;
