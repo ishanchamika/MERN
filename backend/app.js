@@ -78,7 +78,7 @@ app.post('/addemployee', (req, res) =>
 })
 // __________________________________________________
 
-//__________________Get all employees____________________
+//__________________Get all employees________________
 app.get('/getemployees', (req, res) => 
 {
     controller.getEmployees( (req, res, next) => 
@@ -86,4 +86,14 @@ app.get('/getemployees', (req, res) =>
         res.send();
     });
 });
+//__________________________________________________
+
+//__________________Delete employee_________________
+// app.delete('/deleteEmployee', async (req, res) => 
+// {
+//     controller.deleteEmployee(req.body, (callback) =>
+//     {
+//         res.send();
+//     });
+// })
 module.exports = app;

@@ -42,6 +42,29 @@ function Supervisor()
     }
   };
 
+
+  const handleDeleteEmploye = async (id) => 
+  {
+    try
+    {
+      console.log('id', id);
+      const response = await axios.post('http://localhost:3001/api/deleteemployee', {id});
+
+      if(response.data.message === 'success')
+      {
+        console.log(response.data.message);
+        window.location.reload();
+      }
+      else
+      {
+        console.log('No data found');
+      }
+    }  
+    catch (err) 
+    {
+      console.log('Error:', err);
+    }
+  }
   // Fetch employee data when the component mounts
   useEffect(() => 
   {
@@ -75,7 +98,7 @@ function Supervisor()
                 <td>{emp.empName}</td>
                 <td>{emp.empWeight}</td>
                 <td><button className='sub_btn'>Update</button></td>
-                <td><button className='sub_btn'>Delete</button></td>
+                <td><button className='sub_btn' onClick={() => handleDeleteEmploye(emp._id)}>Delete</button></td>
               </tr>
             ))}
           </tbody>

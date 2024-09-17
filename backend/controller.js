@@ -1,10 +1,9 @@
-const { response } = require('./app');
+// const { response } = require('./app');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// const User = require('./model');
-// const Employee = require('./model');
 const { User, Employee } = require('./model');
+const e = require('express');
 
 // get All Users______________________________
 const getUsers = (req, res, next) => 
@@ -128,7 +127,7 @@ const addEmployee = async (req, res) =>
 const getEmployees = async (req, res) =>
 {
     try{
-        const data =await Employee.find();
+        const data = await Employee.find();
         if(data.length > 0)
         {
             res.json({data});
@@ -143,6 +142,27 @@ const getEmployees = async (req, res) =>
         res.json({message: "network error"});
     }
 }
+// delete Employee____________________________________________________
+const deleteEmployee = async (req, res) =>
+{
+    const id = req.body.id;
+    try
+    {
+        const result = await Employee.deleteOne({ _id: id});
+        if(result.deletedCount === 0)
+        {
+            res.json({message: "failed"});
+        }
+        else
+        {
+            res.json({message: "success"});
+        }   
+    }
+    catch(err)
+    {
+        res.json({message: "network error"});
+    }
+}
 // ====================================================================================================================================
 exports.getUsers = getUsers;
 exports.addUser = addUser;
@@ -151,3 +171,4 @@ exports.deleteUser = deleteUser;
 exports.finduser = finduser;
 exports.addEmployee = addEmployee;
 exports.getEmployees = getEmployees;
+exports.deleteEmployee = deleteEmployee;
