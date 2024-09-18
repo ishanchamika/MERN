@@ -89,11 +89,11 @@ app.get('/getemployees', (req, res) =>
 //__________________________________________________
 
 //__________________Delete employee_________________
-// app.delete('/deleteEmployee', async (req, res) => 
-// {
-//     controller.deleteEmployee(req.body, (callback) =>
-//     {
-//         res.send();
-//     });
-// })
+app.delete('/deleteEmployee', async (req, res) => 
+{
+    controller.deleteEmployee(req.body, (callback) =>
+    {
+        res.send();
+    });
+})
 module.exports = app;

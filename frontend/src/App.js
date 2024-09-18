@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Register from './pages/Register';
 import Supervisor from './pages/Supervisor/Supervisor';
 import Adddetails from './pages/Supervisor/Adddetails';
+import Updatedetails from './pages/Supervisor/Updatedetails';
 
 function App() 
 {
@@ -18,6 +19,7 @@ function App()
         <Route path='/dashboard' element = {<Dashboard/>}></Route>
         <Route path='/supervisor' element = {<Supervisor/>}></Route>
         <Route path='/Add_details' element = {<Adddetails/>}></Route>
+        <Route path='/updatedetails' element = {<Updatedetails />}></Route>
       </Routes>
     </BrowserRouter>
     </div>

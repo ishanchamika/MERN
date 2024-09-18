@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react'
-import { Navigate, Link, Routes, Route, BrowserRouter } from 'react-router-dom'
+import { useNavigate, Link, Routes, Route, BrowserRouter } from 'react-router-dom'
 import '../css/supervisor.css'
 import axios from 'axios';
 import { checkTokenExpiration } from '../auth';
@@ -41,6 +41,10 @@ function Supervisor()
       console.log('Error:', err);
     }
   };
+  useEffect(() => 
+    {
+      handleGetEmployees();
+    }, []);
 
 
   const handleDeleteEmploye = async (id) => 
@@ -52,8 +56,8 @@ function Supervisor()
 
       if(response.data.message === 'success')
       {
-        console.log(response.data.message);
-        window.location.reload();
+        handleSuccess('Employee deleted successfully');
+        setTimeout(() => { window.location.reload(); }, 2000);
       }
       else
       {
@@ -64,12 +68,21 @@ function Supervisor()
     {
       console.log('Error:', err);
     }
-  }
-  // Fetch employee data when the component mounts
-  useEffect(() => 
+  };
+
+  const navigate = useNavigate();
+  const handleUpdateEmp = async (id) => 
   {
-    handleGetEmployees();
-  }, []);
+    try
+    {
+        const response = await axios.post('http://localhost:3001/api/findemployee', {id});
+        navigate('/updatedetails', {state: {updateEmp: response.data}});
+    }
+    catch(err)
+    {
+      console.log('Error:', err);
+    }
+  };
 
   return (
 
@@ -97,7 +110,7 @@ function Supervisor()
                 <td>{emp.empDate}</td>
                 <td>{emp.empName}</td>
                 <td>{emp.empWeight}</td>
-                <td><button className='sub_btn'>Update</button></td>
+                <td><button className='sub_btn' onClick={() => handleUpdateEmp(emp._id)}>Update</button></td>
                 <td><button className='sub_btn' onClick={() => handleDeleteEmploye(emp._id)}>Delete</button></td>
               </tr>
             ))}

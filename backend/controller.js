@@ -1,4 +1,4 @@
-// const { response } = require('./app');
+const { response } = require('./app');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -163,6 +163,55 @@ const deleteEmployee = async (req, res) =>
         res.json({message: "network error"});
     }
 }
+
+// update Employee____________________________________________________
+const updateEmployee = async (req, res) =>
+{
+    const idxx = req.body.id;
+    const empId = req.body.empID;
+    const empName = req.body.empName;
+    const empDate = req.body.empDate;
+    const empWeight = req.body.empWeight;
+    try{
+        const response = await Employee.updateOne({_id: idxx}, {$set: {empId: empId, empName: empName, empDate: empDate, empWeight: empWeight}});
+        if(response != null)
+        {
+            res.json({message: response});
+        }
+        else
+        {
+            res.json({message: "failed"});
+        }
+    }
+    catch(err)
+    {
+        res.json({message: "network error"});
+    }   
+    
+}
+
+// find Employee____________________________________________________
+const findEmployee = async (req, res) =>
+{
+    const id = req.body.id;
+    try
+    {
+        const data = await Employee.findOne({_id: id});
+        if(data)
+        {
+            res.json({data});
+        }
+        else
+        {
+            res.json({message: "no data found"});
+        }  
+    }
+    catch(err)
+    {
+        res.json({message: "network error"});
+    }
+}
+
 // ====================================================================================================================================
 exports.getUsers = getUsers;
 exports.addUser = addUser;
@@ -172,3 +221,5 @@ exports.finduser = finduser;
 exports.addEmployee = addEmployee;
 exports.getEmployees = getEmployees;
 exports.deleteEmployee = deleteEmployee;
+exports.updateEmployee = updateEmployee;
+exports.findEmployee = findEmployee;
