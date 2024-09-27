@@ -6,11 +6,12 @@ import {Link} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { handleErr } from './Toastify'
 import { ToastContainer } from 'react-toastify'; 
+import {handleSuccess} from './Toastify'
 import 'react-toastify/dist/ReactToastify.css';
+// import { set } from '../../../backend/app'
 
 export default function MainPage() 
 {
-
   //state to store the user input
   const [username , setUsername] = useState("");
   const [password , setPassword] = useState("");
@@ -43,7 +44,9 @@ export default function MainPage()
         if(response.data.token)
         {
           localStorage.setItem('token', response.data.token);
-          Navigate('/supervisor');
+          handleSuccess('Login Successful');
+          setTimeout(() => {Navigate('/supervisor');}, 2000);
+          
         }
         else
         {

@@ -42,9 +42,9 @@ function Supervisor()
     }
   };
   useEffect(() => 
-    {
-      handleGetEmployees();
-    }, []);
+  {
+    handleGetEmployees();
+  }, []);
 
 
   const handleDeleteEmploye = async (id) => 
@@ -89,7 +89,7 @@ function Supervisor()
     <div className='supervisor'>
     <ToastContainer />
     <h1>Supervisor Page</h1>
-      <Link to='/Add_details' className='pick'><button className='btn'>See Picker Details</button></Link>
+      <Link to='/Add_details' className='pick'><button className='btn'>Add Picker Details</button></Link>
       <div className='pickers'>
         <table>
           <thead>

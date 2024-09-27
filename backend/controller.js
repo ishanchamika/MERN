@@ -82,8 +82,8 @@ const finduser = async (req, res, next) =>
             if(isMatch)
             {
                 // res.json({message: "success"});
-                const token = jwt.sign({userId: userdata._id}, 'ishan789', {expiresIn: '1m'});
-                res.json({token: token});
+                const token = jwt.sign({userId: userdata._id}, 'ishan789', {expiresIn: '5m'});
+                res.json({token: token, first_login: "yes"});
             }
             else
             {
