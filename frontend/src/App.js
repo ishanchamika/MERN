@@ -6,12 +6,18 @@ import Register from './pages/Register';
 import Supervisor from './pages/Supervisor/Supervisor';
 import Adddetails from './pages/Supervisor/Adddetails';
 import Updatedetails from './pages/Supervisor/Updatedetails';
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
 
 function App() 
 {
   return (
     <div className="App">
+
     <BrowserRouter>
+    {/* <Navbar />
+    
+    <Sidebar /> */}
       <Routes>
         <Route path='/' element = {<MainPage/>}></Route>
         <Route path='/login' element = {<MainPage/>}></Route>
