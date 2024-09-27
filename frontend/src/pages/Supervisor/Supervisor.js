@@ -88,9 +88,12 @@ function Supervisor()
 
     <div className='supervisor'>
     <ToastContainer />
-    <h1 style={{'textAlign':'center'}}>Supervisor Page</h1>
-      <Link to='/Add_details' className='pick'><button className='btn' style={{'margin':'5px'}}>Add Picker Details</button></Link>
-      <Link to='/dashboard' className='pick'><button className='btn'>Dashboard</button></Link>
+    <h1>Supervisor Page</h1>
+      <div className='btn_container' style={{'padding':'10px', 'display':'flex', 'gap':'10px'}}>
+        <Link to='/Add_details' className='pick'><button className='btn'>Add Picker Details</button></Link>
+        <Link to='/dashboard' className='pick'><button className='btn'>Dashboard</button></Link>
+        <Link to='/reg_picker' className='pick'><button className='btn'>Picker Register</button></Link>
+      </div>
       <div className='pickers'>
         <table>
           <thead>
