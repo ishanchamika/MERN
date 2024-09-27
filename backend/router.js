@@ -15,4 +15,6 @@ router.post('/deleteemployee', controller.deleteEmployee);
 router.put('/updateemployee', controller.updateEmployee);
 router.post('/findemployee', controller.findEmployee);
 
+router.post('/registerpicker', controller.addPicker);
+
 module.exports = router;

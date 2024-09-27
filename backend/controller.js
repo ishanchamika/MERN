@@ -211,6 +211,23 @@ const findEmployee = async (req, res) =>
         res.json({message: "network error"});
     }
 }
+// =======================================================ADD PICKER==================================================================
+const addPicker = async (req, res) =>
+{
+    try
+    {
+        const {picker_name, picker_address, picker_phone, picker_age, picker_acc} = req.body;
+
+        if(picker_name !== null)
+        {
+            
+        }
+    }
+    catch (e)
+    {
+        res.json({message: "network error"});
+    }
+}
 
 // ====================================================================================================================================
 exports.getUsers = getUsers;
