@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const { User, Employee } = require('./model');
+const {check, validationResult} = require('express-validator');
 const e = require('express');
 
 // get All Users______________________________
@@ -212,7 +213,7 @@ const findEmployee = async (req, res) =>
     }
 }
 // =======================================================ADD PICKER==================================================================
-const addPicker = async (req, res) =>
+const registerpicker = async (req, res) =>
 {
     try
     {
@@ -240,3 +241,4 @@ exports.getEmployees = getEmployees;
 exports.deleteEmployee = deleteEmployee;
 exports.updateEmployee = updateEmployee;
 exports.findEmployee = findEmployee;
+exports.registerpicker = registerpicker;
