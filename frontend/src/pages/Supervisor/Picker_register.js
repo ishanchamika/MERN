@@ -21,49 +21,65 @@ function Picker_register()
 
 
 
-    const handlePickerDetails = async (e) =>
+    const handlePickerDetails = async (e) => 
     {
-        e.preventdefault();
-        try
+        e.preventDefault();
+        try 
         {
-            const res = await axios.post('http://localhost:3001/api/registerpicker', {picker_name, picker_address, picker_phone, picker_age, picker_acc});
-
-            if(res.data.type === 'success')
+            const res = await axios.post('http://localhost:3001/api/registerpicker', {
+                picker_name,
+                picker_address,
+                picker_phone,
+                picker_age,
+                picker_acc
+            });
+    
+            if (res.status === 201) 
             {
-                
+                handleSuccess(res.data.message); 
+            } 
+            else 
+            {
+                handleErr(res.data.message || "An error occurred during registration.");
             }
-            else
+        } 
+        catch (err) 
+        {
+            if (err.response) 
             {
-
+                handleErr("err.response");
+            } 
+            else 
+            {
+                handleErr("Network error, please check your connection.");
             }
         }
-        catch (err)
-        {
-            console.log(err);
-        }
-    }
+    };
+    
+    
 
 
   return (
     <div>
-    <form onSubmit={Picker_register} className='form1'>
+    <ToastContainer />
+    <form onSubmit={handlePickerDetails} className='form1'>
         {/* <label>Picker ID</label> */}
         {/* <input type='text' placeholder='Enter Employee ID' name='picker_id' onChange={(e)=>set_picker_id(e.target.value)} /> */}
 
         <label>Full Name</label>
-        <input type='date' placeholder='Select Date' name='picker_name' onChange={(e)=>set_picker_name(e.target.value)}/>
-
-        <label>Address</label>
-        <input type='text' placeholder='Enter Employee Name' name='picker_address' onChange={(e)=>set_picker_address(e.target.value)} />
-
-        <label>Phone</label>
-        <input type='text' placeholder='Enter Picked Weight' name='picker_phone' onChange={(e)=>set_picker_phone(e.target.value)} />
+        <input type='text' placeholder='full name' name='picker_name' onChange={(e)=>set_picker_name(e.target.value)}/>
 
         <label>Age</label>
-        <input type='text' placeholder='Enter Picked Weight' name='picker_age' onChange={(e)=>set_picker_age(e.target.value)} />
+        <input type='number' placeholder='age' name='picker_age' onChange={(e)=>set_picker_age(e.target.value)} />
+        
+        <label>Address</label>
+        <input type='text' placeholder='address' name='picker_address' onChange={(e)=>set_picker_address(e.target.value)} />
+
+        <label>Phone</label>
+        <input type='number' placeholder='phone' name='picker_phone' onChange={(e)=>set_picker_phone(e.target.value)} />
 
         <label>Account Number(People's Bank)</label>
-        <input type='text' placeholder='Enter Picked Weight' name='picker_acc' onChange={(e)=>set_picker_acc(e.target.value)} />
+        <input type='number' placeholder='account number' name='picker_acc' onChange={(e)=>set_picker_acc(e.target.value)} />
 
     <button className='btn'>Submit</button>
   </form>
