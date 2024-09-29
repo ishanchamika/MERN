@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('./controller');
-const C_picker = require('./CONTROLLER/C_Picker');
+const picker = require('./CONTROLLER/CPicker');
 
 
 router.get('/users',controller.getUsers);
@@ -16,6 +16,6 @@ router.post('/deleteemployee', controller.deleteEmployee);
 router.put('/updateemployee', controller.updateEmployee);
 router.post('/findemployee', controller.findEmployee);
 
-router.post('/registerpicker', C_picker.validatePicker, C_picker.registerPicker);
+router.post('/registerpicker', picker.registerPicker);
 
 module.exports = router;
