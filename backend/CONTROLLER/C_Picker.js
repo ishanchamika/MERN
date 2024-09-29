@@ -53,5 +53,5 @@ const registerPicker = async (req, res) =>
     }
 };
 
-exports.registerPicker = registerPicker;
 exports.validatePicker = validatePicker;
+exports.registerPicker = registerPicker;
