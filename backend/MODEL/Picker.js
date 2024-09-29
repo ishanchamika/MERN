@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const pickerSchema = new schema({
-    pickerId: String,
+    // pickerId: String,
     pickerName: String,
     pickerAge: Number,
     pickerAddress: String,
