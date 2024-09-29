@@ -25,14 +25,18 @@ function Picker_register() {
                 picker_acc
             });
 
-            if (res) 
+            if(res.data.status === 400) 
             {
-                // handleSuccess('201' , res.data.message); 
-                console.log('201', res.data.message);
+                const errorMessages = res.data.message;
+                errorMessages.forEach((errMsg) => {handleErr(errMsg);});
             } 
+            else if(res.data.status === 201)
+            {
+                handleSuccess(res.data.message);
+            }
             else
             {
-                console.log('500');
+                handleErr(res.data.message);
             }
         } 
         catch (err) 

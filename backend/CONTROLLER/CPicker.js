@@ -29,9 +29,9 @@ const validatePickerDetails = (pickerDetails) => {
     if (pickerDetails.picker_acc && (typeof pickerDetails.picker_acc !== 'string' || pickerDetails.picker_acc.length !== 15)) {
         errors.push('Picker account must be exactly 15 characters long.');
     }
-    if(pickerDetails.picker_acc === null)
+    if(pickerDetails.picker_acc.length == 0 )
     {
-        errors.push('Account is required');
+        errors.push('Account number is required');
     }
 
     return errors;
@@ -53,7 +53,7 @@ const registerPicker = async (req, res) =>
     const validationErrors = validatePickerDetails(pickerDetails);
     if (validationErrors.length > 0) 
     {
-        return res.json({ type: 'error', message: validationErrors });
+        return res.json({status: 400, type: 'error', message: validationErrors });
     }
 
     try 
@@ -66,12 +66,12 @@ const registerPicker = async (req, res) =>
             pickerAccount: pickerDetails.picker_acc
         });
         const saveRes = await picker.save();
-        res.json({ message: 'Picker registered successfully', data: saveRes });
+        res.json({status: 201, message: 'Picker registered successfully', data: saveRes });
     }
     catch (error) 
     {
         console.error(error);
-        res.json({ type: 'error', message: "Server error, try again later" });
+        res.json({status: 500,  type: 'error', message: "Server error, try again later" });
     }
 };
 
