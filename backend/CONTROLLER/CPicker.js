@@ -1,4 +1,4 @@
-const { Picker } = require('../MODEL/Picker');
+const { Picker } = require('../MODEL/MPicker');
 const { check, validationResult } = require('express-validator');
 
 const validatePickerDetails = (pickerDetails) => {
